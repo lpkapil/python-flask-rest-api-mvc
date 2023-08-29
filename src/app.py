@@ -30,7 +30,7 @@ app.add_api(config.basedir / "swagger.json")
 
 @app.route("/")
 def index():
-    host = socket.gethostbyname(socket.gethostname())
+    host = socket.gethostbyname(socket.gethostbyname('infogiants.com'))
     return render_template("index.html", host=host)
 
 if __name__ == "__main__":
