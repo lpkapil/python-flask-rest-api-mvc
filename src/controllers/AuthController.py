@@ -66,7 +66,7 @@ def login(data):
 			'exp' : datetime.utcnow() + timedelta(minutes = 60)
 		}, app.config['JWT_SECRET_KEY'])
 
-		return make_response(jsonify({'token' : token}), 201)
+		return make_response(jsonify({'token' : token.decode("utf-8")}), 201)
 	# returns 403 if password is wrong
 	abort(403, f"Invalid password")
 
