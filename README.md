@@ -13,6 +13,12 @@ A complete REST API written in python flask framework with swagger API docs, Sql
 
 # Install steps
 ```
+sudo apt update
+sudo apt -y upgrade
+python3 -V
+sudo apt install -y python3-pip
+sudo apt install -y build-essential libssl-dev libffi-dev python3-dev
+apt install python-pip
 pip install requirements.txt
 
 ```
