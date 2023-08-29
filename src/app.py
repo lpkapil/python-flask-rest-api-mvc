@@ -4,6 +4,8 @@ from flask import render_template
 import config
 from config import app, db
 from models.UserModel import User
+import socket
+
 # from routes.notes_bp import notes_bp
 # from routes.users_bp import users_bp
 # from routes.auth_bp import auth_bp
@@ -25,9 +27,11 @@ app.add_api(config.basedir / "swagger.json")
 #     users = User.query.all()
 #     return render_template("home.html", users=users)
 
+
 @app.route("/")
 def index():
-    return render_template("index.html")
+    host = socket.gethostbyname(socket.gethostname())
+    return render_template("index.html", host=host)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
