@@ -20,6 +20,7 @@ sudo apt install -y python3-pip
 sudo apt install -y build-essential libssl-dev libffi-dev python3-dev
 pip3 install requirements.txt
 pip3 install marshmallow-sqlalchemy
+pip3 install connexion[swagger-ui]
 
 ```
 
