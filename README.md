@@ -12,21 +12,31 @@ A complete REST API written in python flask framework with swagger API docs, Sql
 - Pip python package manager
 
 # Install steps
-```pip install requirements.txt
+```
+pip install requirements.txt
+
 ```
 
 # Database setup
-- python database.py
+```
+python database.py
+
+```
 
 # Run application
-- python app.py
+```
+python app.py
 
+```
 # Errors
 - Install missing packages using - pip intall packagename
 
 # Bouns configurations
 - Create virtual env and run/setup project inside that
-- python -m venv /path/project
-- source /path/project/bin/activate - For activating virtual environment
-- deactivate - For deactivating virtual environment
+```
+python -m venv /path/project
+source /path/project/bin/activate - For activating virtual environment
+deactivate - For deactivating virtual environment
+
+```
 
