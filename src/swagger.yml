@@ -1,0 +1,277 @@
+# swagger.yml
+
+openapi: 3.0.0
+info:
+  title: "Flask REST API"
+  description: "Flask REST API API with modulesAuth (login/register), Users and Notes relational using sqlite3 db"
+  version: "1.0.0"
+  contact:
+    email: lpkapil@gmail.com
+servers:
+  - url: "/api"
+    description: Development server (uses test data) server (uses test data)
+
+tags:
+  - name: Auth
+    description: Everything about login/registration
+  - name: Users
+    description: Everything about your Users
+  - name: Notes
+    description: Everything about your Notes
+paths:
+  /auth/register:
+    post:
+      operationId: "controllers.AuthController.register"
+      security: []
+      tags:
+        - Auth
+      summary: "Register a user"
+      requestBody:
+          description: "User to create"
+          required: True
+          content:
+            application/json:
+              schema:
+                x-body-name: "data"
+                $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: "Successfully created user"
+  /auth/login:
+    post:
+      operationId: "controllers.AuthController.login"
+      security: []
+      tags:
+        - Auth
+      summary: "Login a user"
+      requestBody:
+          description: "Login a user"
+          required: True
+          content:
+            application/json:
+              schema:
+                x-body-name: "data"
+                $ref: "#/components/schemas/Login"
+      responses:
+        "201":
+          description: "Successfully logged in user"
+  /users:
+    get:
+      operationId: "controllers.UsersController.read_all"
+      tags:
+        - Users
+      summary: "Read the list of user"
+      responses:
+        "200":
+          description: "Successfully read user list"
+    post:
+      operationId: "controllers.UsersController.create"
+      tags:
+        - Users
+      summary: "Create a user"
+      requestBody:
+          description: "User to create"
+          required: True
+          content:
+            application/json:
+              schema:
+                x-body-name: "user"
+                $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: "Successfully created user"
+  /users/{email}:
+    get:
+      operationId: "controllers.UsersController.read_one"
+      tags:
+        - Users
+      summary: "Read one user"
+      parameters:
+        - $ref: "#/components/parameters/email"
+      responses:
+        "200":
+          description: "Successfully read user"
+    put:
+      tags:
+        - Users
+      operationId: "controllers.UsersController.update"
+      summary: "Update a user"
+      parameters:
+        - $ref: "#/components/parameters/email"
+      responses:
+        "200":
+          description: "Successfully updated user"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "user"
+              $ref: "#/components/schemas/User"
+    delete:
+      tags:
+        - Users
+      operationId: "controllers.UsersController.delete"
+      summary: "Delete a user"
+      parameters:
+        - $ref: "#/components/parameters/email"
+      responses:
+        "204":
+          description: "Successfully deleted user"
+  /notes:
+    post:
+      operationId: "controllers.NotesController.create"
+      tags:
+        - Notes
+      summary: "Create a note associated with a user"
+      requestBody:
+          description: "Note to create"
+          required: True
+          content:
+            application/json:
+              schema:
+                x-body-name: "note"
+                type: "object"
+                properties:
+                  person_id:
+                    type: "integer"
+                  content:
+                    type: "string"
+      responses:
+        "201":
+          description: "Successfully created a note"
+  /notes/{note_id}:
+    get:
+      operationId: "controllers.NotesController.read_one"
+      tags:
+        - Notes
+      summary: "Read one note"
+      parameters:
+        - $ref: "#/components/parameters/note_id"
+      responses:
+        "200":
+          description: "Successfully read one note"
+    put:
+      tags:
+        - Notes
+      operationId: "controllers.NotesController.update"
+      summary: "Update a note"
+      parameters:
+        - $ref: "#/components/parameters/note_id"
+      responses:
+        "200":
+          description: "Successfully updated note"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "note"
+              type: "object"
+              properties:
+                content:
+                  type: "string"
+    delete:
+      tags:
+        - Notes
+      operationId: "controllers.NotesController.delete"
+      summary: "Delete a note"
+      parameters:
+        - $ref: "#/components/parameters/note_id"
+      responses:
+        "204":
+          description: "Successfully deleted note"
+components:
+  schemas:
+    User:
+      type: "object"
+      required:
+        - fname
+        - lname
+        - email
+        - password
+      properties:
+        fname:
+          type: "string"
+        lname:
+          type: "string"
+        email:
+          type: "string"
+        password:
+          type: "string"
+    Login:
+      type: "object"
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: "string"
+        password:
+          type: "string"
+    Note:
+      type: "object"
+      required:
+        - content
+        - user_id
+      properties:
+        content:
+          type: "string"
+        user_id:
+          type: "integer"
+  parameters:
+    fname:
+      name: "fname"
+      description: "First name of the user to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
+    lname:
+      name: "lname"
+      description: "Last name of the user to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
+    email:
+      name: "email"
+      description: "Email of the user to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
+    password:
+      name: "password"
+      description: "Password of the user to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
+    note_id:
+      name: "note_id"
+      description: "ID of the note"
+      in: path
+      required: true
+      schema:
+        type: "integer"
+    content:
+      name: "content"
+      description: "Content of the note"
+      in: path
+      required: true
+      schema:
+        type: "string"
+    user_id:
+      name: "user_id"
+      description: "ID of the user"
+      in: path
+      required: true
+      schema:
+        type: "integer"
+  securitySchemes:
+    bearerAuth:     # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    # optional, arbitrary value for documentation purposes
+      x-bearerInfoFunc: controllers.AuthController.decodeToken
+security:
+  - bearerAuth: []         # use the same name as above

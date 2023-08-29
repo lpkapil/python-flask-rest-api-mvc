@@ -1,0 +1,24 @@
+<!-- templates/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask REST API</title>
+</head>
+<body>
+    <h1>
+        This is flask REST API project using MVC
+    </h1>
+    {% for user in users %}
+    <h2>{{ user.fname }} {{ user.lname }} - {{ user.email }}</h2>
+    <ul>
+        {% for note in user.notes %}
+        <li>
+            {{ note.content }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</body>
+</html>

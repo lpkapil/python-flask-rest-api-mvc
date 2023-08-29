@@ -1,0 +1,5 @@
+flask==2.2.5
+pyjwt==2.8.0
+datetime
+uuid
+Flask-SQLAlchemy
