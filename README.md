@@ -18,29 +18,28 @@ sudo apt -y upgrade
 python3 -V
 sudo apt install -y python3-pip
 sudo apt install -y build-essential libssl-dev libffi-dev python3-dev
-apt install python-pip
-pip install requirements.txt
+pip3 install requirements.txt
 
 ```
 
 # Database setup
 ```
-python database.py
+python3 database.py
 
 ```
 
 # Run application
 ```
-python app.py
+python3 app.py
 
 ```
 # Errors
-- Install missing packages using - pip intall packagename
+- Install missing packages using - pip3 intall packagename
 
 # Bouns configurations
 - Create virtual env and run/setup project inside that
 ```
-python -m venv /path/project
+python3 -m venv /path/project
 source /path/project/bin/activate - For activating virtual environment
 deactivate - For deactivating virtual environment
 
