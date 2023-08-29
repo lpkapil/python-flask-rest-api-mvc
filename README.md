@@ -12,9 +12,7 @@ A complete REST API written in python flask framework with swagger API docs, Sql
 - Pip python package manager
 
 # Install steps
-```
-pip install requirements.txt
-
+```pip install requirements.txt
 ```
 
 # Database setup
