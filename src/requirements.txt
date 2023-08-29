@@ -4,3 +4,4 @@ datetime
 uuid
 Flask-SQLAlchemy
 connexion
+flask_marshmallow
