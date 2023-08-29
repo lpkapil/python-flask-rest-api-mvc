@@ -32,7 +32,8 @@ python3 database.py
 
 # Run application
 ```
-python3 app.py
+python3 app.py - For development or local
+nohup python app.py & - For running as background process to test on live domain
 
 ```
 # Errors
